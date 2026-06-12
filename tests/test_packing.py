@@ -8,8 +8,13 @@ def test_rain_commute():
 
 
 def test_unknown_condition_falls_back_to_default():
-    result = get_packing_recommendation("Tornado", "general")
+    result = get_packing_recommendation("Hurricane", "general")
     assert result["recommended_items"] == ["check the forecast again closer to the date"]
+
+
+def test_tornado_gives_safety_advice():
+    result = get_packing_recommendation("Tornado", "general")
+    assert "seek sturdy shelter immediately" in result["recommended_items"]
 
 
 def test_extreme_heat_adds_items():

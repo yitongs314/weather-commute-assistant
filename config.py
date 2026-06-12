@@ -21,6 +21,13 @@ PACKING_RULES = {
     "clouds": ["light jacket"],
     "mist": ["light jacket", "allow extra travel time for low visibility"],
     "fog": ["light jacket", "allow extra travel time for low visibility"],
+    "tornado": ["seek sturdy shelter immediately", "avoid travel if at all possible"],
+    "squall": ["secure loose items", "windproof jacket", "expect sudden weather changes"],
+    "ash": ["mask or respirator", "eye protection", "avoid prolonged outdoor exposure"],
+    "smoke": ["mask or respirator", "avoid prolonged outdoor exposure"],
+    "haze": ["mask if air quality is poor", "limit strenuous outdoor activity"],
+    "dust": ["mask or scarf to cover nose and mouth", "eye protection"],
+    "sand": ["mask or scarf to cover nose and mouth", "eye protection"],
     "default": ["check the forecast again closer to the date"],
     # extra items added on top of the base list when temperatures are extreme
     "extreme_heat": ["sunscreen", "water bottle", "hat"],
