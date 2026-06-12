@@ -1,0 +1,7 @@
+venv/
+.env
+__pycache__/
+*.pyc
+user_profile.json
+.pytest_cache/
+.claude/
