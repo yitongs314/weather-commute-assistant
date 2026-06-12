@@ -71,29 +71,7 @@ restart the app, and ask *"What should I wear in Seattle tomorrow?"* - the
 agent will explain that the weather service is unavailable and still offer
 general advice.
 
-### 2. Vague or ambiguous user request
-
-This covers three distinct cases:
-
-- **Missing information** - e.g. *"What should I wear?"* (no location or
-  date). The agent asks a clarifying question, or falls back to the saved
-  `home_location` if one exists and says so explicitly (so the user can
-  correct it).
-- **Ambiguous location being saved as a default** - e.g. *"I live in
-  Springfield"*. Before calling `update_user_profile`, the agent calls
-  `resolve_location`, which hard-blocks on ambiguous names (5 US cities
-  named Springfield) and asks the user to clarify, since a wrong save would
-  silently affect every future request.
-- **Ambiguous location for a one-off request** - e.g. *"I'm traveling to San
-  Diego for two days starting tomorrow."* `get_weather` proceeds with the
-  most likely match (San Diego, CA) and includes a `possible_alternates`
-  list (San Diego, TX); the agent mentions the assumption inline rather than
-  blocking, since the cost of a wrong guess here is low and immediately
-  visible.
-
-**To test:** try each of the three example prompts above.
-
-### 3. Conflicting travel advisories
+### 2. Conflicting travel advisories
 
 "Conflicting information" can mean a few different things, and the agent
 handles each differently rather than treating all news as equally reliable:
@@ -125,6 +103,28 @@ downweighted rather than presented as fact.
 live NewsAPI results, but asking about travel to a location currently in the
 news for storm-related disruptions (with a recent and an older article) will
 exercise this path.
+
+### 3. Vague or ambiguous user request
+
+This covers three distinct cases:
+
+- **Missing information** - e.g. *"What should I wear?"* (no location or
+  date). The agent asks a clarifying question, or falls back to the saved
+  `home_location` if one exists and says so explicitly (so the user can
+  correct it).
+- **Ambiguous location being saved as a default** - e.g. *"I live in
+  Springfield"*. Before calling `update_user_profile`, the agent calls
+  `resolve_location`, which hard-blocks on ambiguous names (5 US cities
+  named Springfield) and asks the user to clarify, since a wrong save would
+  silently affect every future request.
+- **Ambiguous location for a one-off request** - e.g. *"I'm traveling to San
+  Diego for two days starting tomorrow."* `get_weather` proceeds with the
+  most likely match (San Diego, CA) and includes a `possible_alternates`
+  list (San Diego, TX); the agent mentions the assumption inline rather than
+  blocking, since the cost of a wrong guess here is low and immediately
+  visible.
+
+**To test:** try each of the three example prompts above.
 
 ## Setup
 
